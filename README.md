@@ -174,3 +174,64 @@ delete '/blogs/:id' => 'blog#destroy'
 ```
 <h4> <%= link_to 'Delete Blog', delete_path(@blog), method: :delete, data: {confirm: 'Are you sure you want to delete this blog?'} %> </h4>
 ```
+
+## As a user, I can update my blog post.
+
+# created the edit method inside the controller
+```
+def edit
+    @blog = Blog.find(params[:id])
+end
+```
+
+# created a get edit route in the route file
+```
+  get '/blogs/:id/edit' => 'blog#edit', as: 'edit'
+
+```
+
+# created our edit view file, edit.html.erb
+```
+<h2> Update the Blog </h2>
+<%= form_with model: @blog, method: :patch, local: true do |form|%>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+    <br>
+    <br>
+    <%= form.label :content %>
+    <%= form.text_field :content %>
+    <br>
+    <br>
+    <%= form.submit 'Edit Blog' %>
+<% end %>
+```
+# added link to edit form in show.html.erb file
+```
+<h4> <%= link_to 'Edit Blog', edit_path %> </h4>
+```
+
+# defined the controller update method
+```
+def update
+    @blog = Blog.find(params[:id])
+    @blog.update(blog_params)
+        if @blog.valid?
+            redirect_to blog_path(@blog)
+        else
+            redirect_to edit_path(@blog)
+        end
+end
+```
+
+# created the route with the patch request
+```
+  patch '/blogs/:id' => 'blog#update'
+
+```
+
+## As a developer, I can ensure that all blog posts have titles and content for each post.
+
+
+
+
+

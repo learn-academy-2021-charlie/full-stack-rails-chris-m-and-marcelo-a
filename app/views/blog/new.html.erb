@@ -2,6 +2,20 @@
     <%= form_with model: @blog, local: true do |form|%>
         <%= form.label :title %>
         <%= form.text_field :title %>
+
+        #  trying to implement error message upon validation
+
+        <% if @blog.errors.any? %>
+            <div id=''>
+                <h2><%= pluralize(@blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
+
+                <ul> <% @blog.errors.each do |error| %>
+                    <li><%= error.full_message %></li>
+                <% end %>
+                </ul>
+            </div>
+        <% end %>
+
         <br>
         <br>
         <%= form.label :content %>
