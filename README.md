@@ -36,3 +36,24 @@ end
     <% end %>
 </ul>
 ```
+# create show method
+```
+def show
+    @blog = Blog.find(params[:id])
+end
+```
+# create route 
+```
+get '/blogs/:id' => 'blog#show'
+```
+# create view for each blog post
+```
+<h1> Today's Blogs  </h1>
+
+<h2> <%= @blog.title %> </h2>
+<p> <%= @blog.content %> </p>
+```
+# link each blog on homepage to show
+```
+get '/blogs/:id' => 'blog#show', as: 'blog'
+```
