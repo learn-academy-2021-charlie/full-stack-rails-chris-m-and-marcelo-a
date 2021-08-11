@@ -117,3 +117,60 @@ end
 <h4> <%= link_to 'Back Home', blogs_path %> </h4>
 ```
 
+## As a user, I can click a button that will submit my blog post to the database.
+# in controller, define create method that takes in blog_params
+# define blog_params method under PRIVATE to create another level of security
+
+```
+def create
+        @blog = Blog.create(blog_params)
+        if @blog.valid?
+            redirect_to blogs_path
+        else
+            redirect_to new_path
+        end
+end
+
+    private
+    def blog_params
+        params.require(:blog).permit(:title, :content)
+    end
+```
+
+## As a user, I when I submit my post, I am redirected to the home page.
+
+# implemented conditional statement to check for the presence of data in the input forms. Use helper method "redirect_to" to respond accordingly and redirect appropriate page.
+```
+def create
+        @blog = Blog.create(blog_params)
+        if @blog.valid?
+            redirect_to blogs_path
+        else
+            redirect_to new_path
+        end
+end
+```
+
+## As a user, I can delete my blog post.
+# In controller, define destroy method
+# create instance variable and assign value of the ID to the specific instance
+# use conditionals to check if blog was destroyed and redirect accordingly
+```
+def destroy
+    @blog = Blog.find(params[:id])
+    if @blog.destroy
+        redirect_to blogs_path
+    else
+        redirect_to blog_path(@blog)
+    end
+end
+```
+# create delete route
+```
+delete '/blogs/:id' => 'blog#destroy'
+```
+# create delete button inside of show.html.erb
+# Added method: :delete option, and data: option
+```
+<h4> <%= link_to 'Delete Blog', delete_path(@blog), method: :delete, data: {confirm: 'Are you sure you want to delete this blog?'} %> </h4>
+```
