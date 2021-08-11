@@ -174,3 +174,37 @@ delete '/blogs/:id' => 'blog#destroy'
 ```
 <h4> <%= link_to 'Delete Blog', delete_path(@blog), method: :delete, data: {confirm: 'Are you sure you want to delete this blog?'} %> </h4>
 ```
+
+## As a user, I can update my blog post.
+
+# created the edit method inside the controller
+```
+def edit
+    @blog = Blog.find(params[:id])
+end
+```
+
+# created a get edit route in the route file
+```
+  get '/blogs/:id/edit' => 'blog#edit', as: 'edit'
+
+```
+
+# created our edit view file, edit.html.erb
+```
+<h2> Update the Blog </h2>
+<%= form_with model: @blog, method: :patch, local: true do |form|%>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+    <br>
+    <br>
+    <%= form.label :content %>
+    <%= form.text_field :content %>
+    <br>
+    <br>
+    <%= form.submit 'Edit Blog' %>
+<% end %>
+```
+
+
+
