@@ -57,3 +57,8 @@ get '/blogs/:id' => 'blog#show'
 ```
 get '/blogs/:id' => 'blog#show', as: 'blog'
 ```
+# create homepage root when going to localhost:3000
+```
+root 'blog#index'
+```
+
