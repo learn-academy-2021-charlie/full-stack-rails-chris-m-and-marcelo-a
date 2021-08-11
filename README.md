@@ -205,6 +205,33 @@ end
     <%= form.submit 'Edit Blog' %>
 <% end %>
 ```
+# added link to edit form in show.html.erb file
+```
+<h4> <%= link_to 'Edit Blog', edit_path %> </h4>
+```
+
+# defined the controller update method
+```
+def update
+    @blog = Blog.find(params[:id])
+    @blog.update(blog_params)
+        if @blog.valid?
+            redirect_to blog_path(@blog)
+        else
+            redirect_to edit_path(@blog)
+        end
+end
+```
+
+# created the route with the patch request
+```
+  patch '/blogs/:id' => 'blog#update'
+
+```
+
+## As a developer, I can ensure that all blog posts have titles and content for each post.
+
+
 
 
 
