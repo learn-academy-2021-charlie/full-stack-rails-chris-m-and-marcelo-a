@@ -12,6 +12,7 @@
 # Switching driver/navigator
 - rails db:create
 - rails db:migrate
+- yarn
 # create blogs x3
 -  Blog.create title:'Top 5 taco restaurants in San Dieg
 o', content: 'Puesto, Kikos, Panchitas, Salud, Blanco Tacos'
