@@ -1,24 +1,17 @@
-# README
+# Setup
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- create a Rails app on Desktop
+- created db
+- add remote from GHCR
+- created branch main
+- initial commit
+- checkout index branch
 
-Things you may want to cover:
+- create model Blog
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Switching driver/navigator
+- rails db:create
+- rails db:migrate
+# create blogs x3
+-  Blog.create title:'Top 5 taco restaurants in San Dieg
+o', content: 'Puesto, Kikos, Panchitas, Salud, Blanco Tacos'
